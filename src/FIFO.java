@@ -1,57 +1,93 @@
 import java.rmi.NoSuchObjectException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
-public class FIFO {
-    private ArrayList<Object> queue;
+public class FIFO implements Queue {
+    private ArrayList<Object> data;
     private int maxCap;
 
+    public static void main(String[] args) {
+        FIFOmain.main(args);
+    }
+
     public FIFO(){
-        queue = new ArrayList<>();
+        this.data = new ArrayList<>();
     }
+
     public void add(Object item){
-        this.add(item);
+        data.add(item);
     }
-
-    public  void removeFirst() throws NoSuchObjectException {
+    @Override
+    public  void removeFirst() throws NoSuchElementException {
         if(isEmpty()){
-            throw new NoSuchObjectException("No such object");
+            throw new NoSuchElementException("No such object");
         }
-        queue.remove(first());
+        data.remove(first());
     }
-
-    public Boolean isEmpty(){
-        if(queue.isEmpty()){
+    @Override
+    public boolean isEmpty(){
+        if(data.isEmpty()){
             return true;
         }
         return false;
     }
-
-    public Object first() throws NoSuchObjectException {
+    @Override
+    public Object first() throws NoSuchElementException {
         if(isEmpty()){
-            throw new NoSuchObjectException("No such object");
+            throw new NoSuchElementException("No such object");
         }
-        return queue.get(0);
+        return data.get(0);
     }
-
+    @Override
     public int size(){
-        if(queue.size() > maxSize()){
-            maxCap = queue.size();
+        if(data.size() > maxSize()){
+            maxCap = data.size();
         }
-        return queue.size();
+        return data.size();
     }
 
     public int maxSize(){
+
         return maxCap;
     }
 
+    public String toString(){
+        StringBuilder conToString = new StringBuilder();
+        conToString.append("Queue: ");
+        for (Object element: data) {
+            conToString.append("(");
+            conToString.append(element);
+            conToString.append(") ");
+        }
+        return conToString.toString();
+    }
+
     public boolean equals(Object f){
-        if(!(f instanceof FIFO)){
+        if(f.getClass() != getClass()){
             throw new ClassCastException("not samme type");
         }
-        if(((FIFO) f).size() != size()){
+        FIFO other = (FIFO) f;
+
+        if(size() != other.size()){
             return false;
         }
-        if()
+        for (int i = 0; i < size(); i++) {
+             Object element1 = data.get(i);
+             Object element2 = other.data.get(i);
+
+             if(element1 == null && element2 != null || element1 != null && element2 == null ){
+                return false;
+             }
+             if(element1 == null && element2 == null){
+                 continue;
+             }
+
+             if(!element1.equals(element2)){
+                 return false;
+             }
+
+        }
+        return true;
 
     }
 
