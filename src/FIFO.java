@@ -5,15 +5,18 @@ public class FIFO {
     private ArrayList<Object> queue;
     private int maxCap;
 
+    public FIFO(){
+        queue = new ArrayList<>();
+    }
     public void add(Object item){
-        queue.add(item);
+        this.add(item);
     }
 
     public  void removeFirst() throws NoSuchObjectException {
         if(isEmpty()){
             throw new NoSuchObjectException("No such object");
         }
-        queue.remove(0);
+        queue.remove(first());
     }
 
     public Boolean isEmpty(){
