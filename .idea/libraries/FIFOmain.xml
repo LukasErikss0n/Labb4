@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="FIFOmain">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/FIFOmain.jar!/" />
+      <root url="jar://$PROJECT_DIR$/BFTmain.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

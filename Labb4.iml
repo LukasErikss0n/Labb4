@@ -17,5 +17,7 @@
         <jarDirectory url="file://$MODULE_DIR$" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="library" exported="" name="FIFOmain" level="project" />
+    <orderEntry type="library" exported="" name="BFTmain" level="project" />
   </component>
 </module>
